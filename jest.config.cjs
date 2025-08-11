@@ -9,8 +9,9 @@ const config = {
     '**/__tests__/**/*.[jt]s?(x)',
     '**/?(*.)+(spec|test).[jt]s?(x)'
   ],
+  // Use SWC instead of Babel
   transform: {
-    '^.+\\.[tj]sx?$': 'babel-jest'
+    '^.+\\.[tj]sx?$': ['@swc/jest']
   }
 };
 

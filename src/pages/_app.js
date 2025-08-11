@@ -2,12 +2,12 @@ import Layout from "@/components/layout";
 import { useStore } from "@/store/useStore";
 import "@/styles/globals.css";
 import Head from "next/head";
-import { useEffect } from "react";
+import React from 'react';
 
 export default function App({ Component, pageProps }) {
   const { initializeAuth } = useStore();
 
-  useEffect(() => {
+  React.useEffect(() => {
     initializeAuth();
   }, [initializeAuth]);
 

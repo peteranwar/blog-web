@@ -40,3 +40,50 @@ A full-featured blog platform built with **React**, **Next.js**, **Zustand**, an
 ```bash
 git clone https://github.com/peteranwar/blog-web.git
 cd blog-web
+
+
+- Install dependencies
+npm install
+npm run dev
+
+
+🔐 Authentication
+User Login: user / pass
+Admin Login: admin / admin
+Only logged-in users can:
+
+Create or edit posts
+Add comments
+Like/dislike posts
+Admins can edit/delete any post.
+
+🧪 Running Tests
+npm test
+
+Tests cover:
+
+   CRUD operations for posts
+
+
+🖼️ 📂 Project Structure
+
+blog-web/
+├── pages/
+│   ├── posts/          → Post list, detail, create, edit
+│   ├── auth/
+│   │   └── login.js
+│   └── api/            → Simulated backend
+├── src/
+│   ├── utils/api.js    → API client
+│   ├── store/useStore.js → Zustand store
+│   └── lib/db.json     → "Database" file
+├── __tests__/
+│   └── features/       → Unit tests
+└── public/
+
+
+📝 Notes
+No external API or backend — all data is stored in src/lib/db.json and synced via API Routes.
+SSR & SEO are supported via getServerSideProps.
+Real-time is simulated using BroadcastChannel across tabs.
+Testing mocks fetch, localStorage, and BroadcastChannel.
