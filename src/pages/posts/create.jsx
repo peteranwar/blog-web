@@ -13,7 +13,7 @@ export default function CreatePost() {
     if (!user) router.push('/auth/login');
   }, [user, router]);
 
-  if (!user) return <div>Redirecting...</div>;
+  if (!user) return <h6 className='text-center'>Redirecting...</h6>;
 
   const handleCreate = async ({ title, content }) => {
     try {

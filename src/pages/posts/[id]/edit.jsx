@@ -11,9 +11,8 @@ export default function EditPost({ post: ssrPost, error, user }) {
 
     const [loading, setLoading] = useState(false);
     const [formError, setFormError] = useState('');
-    console.log('postpostpost',ssrPost,error)
 
-    // If no post, show error
+    // In Case there is an error on server-side rendering, show error message
     if (error) {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -51,6 +50,8 @@ export default function EditPost({ post: ssrPost, error, user }) {
         <div className="min-h-screen bg-gray-50">
             <div className="container mx-auto px-4 py-8 max-w-2xl">
                 <h1 className="text-3xl font-bold mb-6">Edit Post</h1>
+                {formError && <p className="text-red-600 mb-4">{formError}</p>}
+                {loading && <p>Loading...</p>}
                 <PostForm
                     initialTitle={post.title}
                     initialContent={post.content}

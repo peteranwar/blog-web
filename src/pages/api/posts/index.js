@@ -1,4 +1,3 @@
-// pages/api/posts/index.js
 import fs from 'fs';
 import path from 'path';
 
@@ -15,10 +14,6 @@ const readDb = () => {
   };
 };
 
-// Write DB
-const writeDb = (data) => {
-  fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
-};
 
 export default function handler(req, res) {
   const db = readDb();

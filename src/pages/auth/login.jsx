@@ -1,4 +1,3 @@
-// src/pages/auth/login.js
 import { useStore } from '@/store/useStore';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -48,13 +47,17 @@ export default function Login() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+            className="w-full cursor-pointer bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
           >
             Login
           </button>
         </form>
-        <p className="text-center text-sm text-gray-500 mt-4">
-          Try: <strong>user / pass</strong> or <strong>admin / admin</strong>
+        {/* Helper text to Login */}
+        <p className="text-center text-lg text-gray-500 mt-4">
+            Try:
+        </p>
+        <p className="text-center text-lg text-red-500 mt-1">
+         <strong>user / pass</strong> or <strong>admin / admin</strong>
         </p>
       </div>
     </div>

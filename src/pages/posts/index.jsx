@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const PostsPage = ({ posts, page, totalPages }) => {
 
     const [currentUser, setCurrentUser] = useState(null);
-    console.log('postsposts posts', page, totalPages);
+
     const router = useRouter();
 
     useEffect(() => {
@@ -15,8 +15,6 @@ const PostsPage = ({ posts, page, totalPages }) => {
         if (storedUser) {
             setCurrentUser(JSON.parse(storedUser));
         }
-
-
     }, []);
 
     return (
@@ -37,7 +35,7 @@ const PostsPage = ({ posts, page, totalPages }) => {
 
 
                 {posts.map(post => (
-                    <div key={post.id} className="bg-white p-6 mb-4 rounded-lg shadow flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div key={post.id} onClick={() => router.push(`/posts/${post.id}`)} className="bg-white hover:bg-gray-100 cursor-pointer p-6 mb-4 rounded-lg shadow flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                         <div className="">
                             <h2 className="text-xl font-semibold">
                                 <Link href={`/posts/${post.id}`}>
@@ -51,12 +49,13 @@ const PostsPage = ({ posts, page, totalPages }) => {
 
                         {currentUser && (currentUser.id === post.authorId || currentUser.role === 'admin') && (
                             <div className="flex space-x-2 ">
-                                <Link href={`/posts/${post.id}/edit`} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 text-center min-w-25">
+                                <Link href={`/posts/${post.id}/edit`} onClick={(e) => e.stopPropagation()} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 text-center min-w-25">
                                     Edit
                                 </Link>
                                 <button
-                                    onClick={async () => {
-                                        if (confirm('Delete this post?')) {
+                                    onClick={async (e) => {
+                                        e.stopPropagation()
+                                        if (confirm('Are you sure you want to delete this post?')) {
                                             await deletePost(post.id);
                                             router.push('/posts');
                                         }
@@ -87,32 +86,12 @@ const PostsPage = ({ posts, page, totalPages }) => {
 export default PostsPage;
 
 
-// export async function getServerSideProps(context) {
-//     const { query } = context;
-//     const page = parseInt(query.page) || 1;
-//     const limit = 5;
-//     const allPosts = getPosts();
-//     const total = allPosts.length;
-//     const totalPages = Math.ceil(total / limit);
-//     const start = (page - 1) * limit;
-//     const posts = allPosts.slice(start, start + limit);
-//     console.log('postsposts',getPosts())
-
-//     return {
-//       props: {
-//         posts: JSON.parse(JSON.stringify(posts)),
-//         page,
-//         totalPages
-//       }
-//     };
-//   }
-
 export async function getServerSideProps(context) {
     const { query } = context;
     const page = query.page || 1;
     const limit = 5;
 
-    // Fetch from API Route (runs on server!)
+    // Fetch from API Route 
     const res = await fetch(`http://localhost:3000/api/posts?page=${page}&limit=${limit}`);
     const data = await res.json();
 

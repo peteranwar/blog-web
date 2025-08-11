@@ -1,4 +1,3 @@
-// pages/api/posts/[id].js
 import fs from 'fs';
 import path from 'path';
 
