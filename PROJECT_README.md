@@ -2,7 +2,6 @@
 
 A full-featured blog platform built with **React**, **Next.js**, **Zustand**, and **Tailwind CSS**. This project demonstrates frontend architecture, authentication, real-time updates, SSR for SEO, and full test coverage — all without an external backend.
 
-🚀 **Live Demo**: [Deploy on Vercel or add your link]
 
 ---
 
